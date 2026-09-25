@@ -1,0 +1,14 @@
+echo "Running pre-commit checks..."
+
+echo "Running format..."
+pnpm run format
+
+echo "Running lint..."
+pnpm lint
+
+echo "Running type checks..."
+pnpm check-types
+
+git add -A .
+
+echo "Pre-commit checks completed successfully!"

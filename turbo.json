@@ -1,0 +1,31 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "ui": "tui",
+  "globalEnv": [
+    "VITE_API_BASE_URL",
+    "VITE_APP_FRONTEND_URL",
+    "VITE_APP_WS_URL",
+    "VITE_APP_LAWYER_APP_URL",
+    "VITE_APP_REGISTRAR_PORTAL_URL"
+  ],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build", "@repo/ui#gen:theme-typings"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": ["dist/**"]
+    },
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
+    "check-types": {
+      "dependsOn": ["^build", "@repo/ui#gen:theme-typings"]
+    },
+    "gen:theme-typings": {
+      "cache": false
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}

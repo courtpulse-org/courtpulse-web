@@ -1,0 +1,39 @@
+#!/usr/bin/env sh
+
+echo "Running pre-push checks..."
+
+# Pre-push hook stdin format (one line per ref being pushed):
+#   <local_ref> <local_sha> <remote_ref> <remote_sha>
+# Use the remote SHA as the base for change detection. When pushing a new
+# branch the remote SHA is all zeros — fall back to the upstream tracking
+# branch, then to origin/main.
+
+ZERO_SHA="0000000000000000000000000000000000000000"
+REMOTE_SHA=""
+
+while read -r _local_ref _local_sha _remote_ref remote_sha_line; do
+  if [ -n "$remote_sha_line" ] && [ "$remote_sha_line" != "$ZERO_SHA" ]; then
+    REMOTE_SHA="$remote_sha_line"
+  fi
+done
+
+if [ -n "$REMOTE_SHA" ]; then
+  BASE_REF="$REMOTE_SHA"
+elif BASE_REF=$(git rev-parse --abbrev-ref --symbolic-full-name '@{u}' 2>/dev/null); then
+  :
+else
+  BASE_REF="origin/main"
+fi
+
+echo "Type-checking and linting packages affected since $BASE_REF..."
+
+# `...[BASE_REF]` = every workspace changed since BASE_REF, plus the packages
+# that depend on them. Shared packages cascade to their apps.
+pnpm exec turbo run check-types lint --filter="...[$BASE_REF]"
+
+if [ $? -ne 0 ]; then
+  echo "Checks failed! Push aborted."
+  exit 1
+fi
+
+echo "Pre-push checks completed successfully!"
