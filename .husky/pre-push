@@ -25,11 +25,17 @@ else
   BASE_REF="origin/main"
 fi
 
-echo "Type-checking and linting packages affected since $BASE_REF..."
-
-# `...[BASE_REF]` = every workspace changed since BASE_REF, plus the packages
-# that depend on them. Shared packages cascade to their apps.
-pnpm exec turbo run check-types lint --filter="...[$BASE_REF]"
+# On the very first push to a new remote there is nothing to diff against
+# (origin/main doesn't exist yet), so check every workspace instead.
+if git rev-parse --verify --quiet "$BASE_REF^{commit}" >/dev/null; then
+  echo "Type-checking and linting packages affected since $BASE_REF..."
+  # `...[BASE_REF]` = every workspace changed since BASE_REF, plus the
+  # packages that depend on them. Shared packages cascade to their apps.
+  pnpm exec turbo run check-types lint --filter="...[$BASE_REF]"
+else
+  echo "No base ref to compare against — type-checking and linting everything..."
+  pnpm exec turbo run check-types lint
+fi
 
 if [ $? -ne 0 ]; then
   echo "Checks failed! Push aborted."
