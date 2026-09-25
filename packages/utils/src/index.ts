@@ -6,3 +6,4 @@ export * from "./build-url-query";
 export * from "./string";
 export * from "./date-time";
 export * from "./amount";
+export * from "./suit-number";

@@ -6,12 +6,7 @@ const { BroadcastsPage } = lazyImport(
   () => import("../pages/BroadcastsPage"),
   "BroadcastsPage",
 );
-const { NewBroadcastPage } = lazyImport(
-  () => import("../pages/NewBroadcastPage"),
-  "NewBroadcastPage",
-);
 
 export const BroadcastRouteList: RouteObject[] = [
   { path: RouteConstants.broadcasts.base.path, element: <BroadcastsPage /> },
-  { path: RouteConstants.broadcasts.new.path, element: <NewBroadcastPage /> },
 ];

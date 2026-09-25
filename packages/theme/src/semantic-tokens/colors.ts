@@ -1,11 +1,24 @@
 import { defineSemanticTokens } from "@chakra-ui/react";
 
-/** Chakra colorPalette for each 1-tap court status. */
+/** Chakra colorPalette for each court status. */
 export const COURT_STATUS_COLOR = {
+  SITTING: "primary",
   ON_BENCH: "success",
   SITTING_LATE: "warning",
-  NOT_SITTING: "error",
   IN_RECESS: "info",
+  ROSE: "gray",
+  NOT_SITTING: "error",
+} as const;
+
+/** Chakra colorPalette for each cause-list outcome. */
+export const OUTCOME_COLOR = {
+  PENDING: "gray",
+  CALLED: "success",
+  STOOD_DOWN: "warning",
+  HEARD: "primary",
+  ADJOURNED: "info",
+  RESERVED: "secondary",
+  STRUCK_OUT: "error",
 } as const;
 
 /** Chakra colorPalette for each consensus level. */

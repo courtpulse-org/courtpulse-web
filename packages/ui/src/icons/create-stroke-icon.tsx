@@ -9,6 +9,9 @@ export function createStrokeIcon(displayName: string, d: string | string[]) {
   return createIcon({
     displayName,
     viewBox: "0 0 24 24",
+    // Without an explicit size an inline SVG in a flex row collapses to 0×0,
+    // which is why nav icons didn't show. 1em tracks the parent's font size.
+    defaultProps: { boxSize: "1em" },
     path: (
       <g
         fill="none"

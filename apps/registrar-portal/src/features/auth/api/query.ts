@@ -18,7 +18,6 @@ export const useStaffLogin = (config?: MutationConfig<typeof staffLogin>) =>
   useMutation({
     mutationFn: staffLogin,
     mutationKey: ["staff-login"],
-    meta: { errorMessage: "Incorrect email or password.", ...config?.meta },
     ...config,
   });
 

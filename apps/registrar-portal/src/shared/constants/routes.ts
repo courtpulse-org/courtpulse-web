@@ -6,36 +6,37 @@ const AuthRoutes = {
   acceptInvite: defineRoute("/auth/invite/:token" as const),
 } as const;
 
-// Module 3 — Registrar console: 1-tap status for the registrar's courtrooms.
-const ConsoleRoutes = {
+const TodayRoutes = {
   base: defineRoute("/" as const),
 } as const;
 
-// Module 3 — Direct broadcasts
+const CourtroomRoutes = {
+  base: defineRoute("/courtrooms" as const),
+  details: defineRoute("/courtrooms/:id" as const),
+} as const;
+
 const BroadcastRoutes = {
   base: defineRoute("/broadcasts" as const),
-  new: defineRoute("/broadcasts/new" as const),
 } as const;
 
-// Module 5 — Live order of business + remote date confirmations
-const DockRoutes = {
-  base: defineRoute("/dock" as const),
-  courtroom: defineRoute("/dock/:courtroomId" as const),
-  remoteDates: defineRoute("/remote-dates" as const),
+const DateRequestRoutes = {
+  base: defineRoute("/date-requests" as const),
 } as const;
 
-// Module 1 — Registrars can also upload the official cause list
-const CauseListRoutes = {
-  base: defineRoute("/cause-list" as const),
+const DiaryRoutes = {
+  base: defineRoute("/diary" as const),
 } as const;
 
-// System Admin — verification, disputes, escrow
+const AlertRoutes = {
+  base: defineRoute("/alerts" as const),
+} as const;
+
 const AdminRoutes = {
   base: defineRoute("/admin" as const),
   registrars: defineRoute("/admin/registrars" as const),
+  courts: defineRoute("/admin/courts" as const),
+  calendar: defineRoute("/admin/calendar" as const),
   lawyers: defineRoute("/admin/lawyers" as const),
-  disputes: defineRoute("/admin/disputes" as const),
-  escrow: defineRoute("/admin/escrow" as const),
   consensus: defineRoute("/admin/consensus" as const),
 } as const;
 
@@ -45,10 +46,12 @@ const SettingsRoutes = {
 
 export const RouteConstants = {
   auth: AuthRoutes,
-  console: ConsoleRoutes,
+  today: TodayRoutes,
+  courtrooms: CourtroomRoutes,
   broadcasts: BroadcastRoutes,
-  dock: DockRoutes,
-  causeList: CauseListRoutes,
+  dateRequests: DateRequestRoutes,
+  diary: DiaryRoutes,
+  alerts: AlertRoutes,
   admin: AdminRoutes,
   settings: SettingsRoutes,
 } as const;

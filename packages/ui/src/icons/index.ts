@@ -133,3 +133,117 @@ export const ShieldCheckIcon = createStrokeIcon("ShieldCheckIcon", [
   "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z",
   "M9 12l2 2 4-4",
 ]);
+export const BookIcon = createStrokeIcon("BookIcon", [
+  "M4 19.5A2.5 2.5 0 0 1 6.5 17H20",
+  "M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z",
+]);
+export const UploadIcon = createStrokeIcon("UploadIcon", [
+  "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4",
+  "M17 8l-5-5-5 5",
+  "M12 3v12",
+]);
+export const EditIcon = createStrokeIcon("EditIcon", [
+  "M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7",
+  "M18.5 2.5a2.12 2.12 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z",
+]);
+export const TrashIcon = createStrokeIcon("TrashIcon", [
+  "M3 6h18",
+  "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6",
+  "M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2",
+]);
+export const DotsIcon = createStrokeIcon("DotsIcon", [
+  "M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2z",
+  "M19 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2z",
+  "M5 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2z",
+]);
+export const ArrowUpIcon = createStrokeIcon("ArrowUpIcon", [
+  "M12 19V5",
+  "M5 12l7-7 7 7",
+]);
+export const ArrowDownIcon = createStrokeIcon("ArrowDownIcon", [
+  "M12 5v14",
+  "M19 12l-7 7-7-7",
+]);
+export const ArrowRightIcon = createStrokeIcon("ArrowRightIcon", [
+  "M5 12h14",
+  "M12 5l7 7-7 7",
+]);
+export const CheckIcon = createStrokeIcon("CheckIcon", "M20 6L9 17l-5-5");
+export const XIcon = createStrokeIcon("XIcon", ["M18 6L6 18", "M6 6l12 12"]);
+export const SendIcon = createStrokeIcon("SendIcon", [
+  "M22 2L11 13",
+  "M22 2l-7 20-4-9-9-4 20-7z",
+]);
+export const MessageIcon = createStrokeIcon(
+  "MessageIcon",
+  "M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z",
+);
+export const SmsIcon = createStrokeIcon("SmsIcon", [
+  "M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z",
+  "M8 9h8",
+  "M8 13h5",
+]);
+export const RefreshIcon = createStrokeIcon("RefreshIcon", [
+  "M23 4v6h-6",
+  "M1 20v-6h6",
+  "M3.51 9a9 9 0 0 1 14.85-3.36L23 10",
+  "M1 14l4.64 4.36A9 9 0 0 0 20.49 15",
+]);
+export const SunIcon = createStrokeIcon("SunIcon", [
+  "M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10z",
+  "M12 1v2",
+  "M12 21v2",
+  "M4.22 4.22l1.42 1.42",
+  "M18.36 18.36l1.42 1.42",
+  "M1 12h2",
+  "M21 12h2",
+  "M4.22 19.78l1.42-1.42",
+  "M18.36 5.64l1.42-1.42",
+]);
+export const MoonIcon = createStrokeIcon(
+  "MoonIcon",
+  "M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z",
+);
+export const BuildingIcon = createStrokeIcon("BuildingIcon", [
+  "M3 21h18",
+  "M5 21V7l7-4 7 4v14",
+  "M9 21v-6h6v6",
+  "M9 10h.01",
+  "M15 10h.01",
+]);
+export const InfoIcon = createStrokeIcon("InfoIcon", [
+  "M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z",
+  "M12 16v-4",
+  "M12 8h.01",
+]);
+export const PlayIcon = createStrokeIcon("PlayIcon", "M5 3l14 9-14 9V3z");
+export const SkipIcon = createStrokeIcon("SkipIcon", [
+  "M5 4l10 8-10 8V4z",
+  "M19 5v14",
+]);
+export const PauseIcon = createStrokeIcon("PauseIcon", [
+  "M6 4h4v16H6z",
+  "M14 4h4v16h-4z",
+]);
+export const HistoryIcon = createStrokeIcon("HistoryIcon", [
+  "M3 3v5h5",
+  "M3.05 13A9 9 0 1 0 6 5.3L3 8",
+  "M12 7v5l4 2",
+]);
+export const LayersIcon = createStrokeIcon("LayersIcon", [
+  "M12 2L2 7l10 5 10-5-10-5z",
+  "M2 17l10 5 10-5",
+  "M2 12l10 5 10-5",
+]);
+export const ChevronLeftIcon = createStrokeIcon(
+  "ChevronLeftIcon",
+  "M15 18l-6-6 6-6",
+);
+export const EyeIcon = createStrokeIcon("EyeIcon", [
+  "M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z",
+  "M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z",
+]);
+export const ZapIcon = createStrokeIcon(
+  "ZapIcon",
+  "M13 2L3 14h9l-1 8 10-12h-9l1-8z",
+);

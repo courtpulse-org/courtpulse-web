@@ -1,59 +1,54 @@
-import { Button, SimpleGrid, Stack } from "@chakra-ui/react";
+import { Button, SimpleGrid, Stack, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
-import { PageHeader, SectionLoader, SurfaceCard } from "@repo/ui/elements";
+import { PageHeader, SectionLoader } from "@repo/ui/elements";
 import { CustomInput } from "@repo/ui/input";
-import {
-  useGetConsensusConfig,
-  useUpdateConsensusConfig,
-  type IConsensusConfig,
-} from "../api";
+import { SectionCard } from "@/components/common";
+import { useConsensus, useUpdateConsensus } from "@/shared/api";
 
-const FIELDS: { key: keyof IConsensusConfig; label: string; hint: string }[] = [
+type Config = {
+  min_reports: number;
+  window_minutes: number;
+  credit_first_n: number;
+  credit_amount: number;
+};
+const FIELDS: { key: keyof Config; label: string; hint: string }[] = [
   {
     key: "min_reports",
-    label: "Reports to verify",
-    hint: "PRD: 2–3 independent Spotters.",
+    label: "Matching reports to verify",
+    hint: "PRD: 2–3 independent spotters in the same courtroom.",
   },
   {
     key: "window_minutes",
-    label: "Consensus window (min)",
-    hint: "Older reports don't count.",
+    label: "Consensus window (minutes)",
+    hint: "Older reports don't count toward agreement.",
   },
   {
     key: "credit_first_n",
-    label: "Credit first N reporters",
-    hint: "Early reporters earn credits.",
+    label: "Credit the first N spotters",
+    hint: "Rewards reporting early.",
   },
   {
     key: "credit_amount",
-    label: "Credits per report",
-    hint: "Pulse Credits awarded each.",
+    label: "Pulse Credits per report",
+    hint: "Redeemable against brief-holding fees.",
   },
 ];
 
 export function ConsensusPage() {
-  const { data, isLoading } = useGetConsensusConfig();
-  const update = useUpdateConsensusConfig();
-  const [cfg, setCfg] = useState<IConsensusConfig>({
-    min_reports: 2,
-    window_minutes: 20,
-    credit_first_n: 3,
-    credit_amount: 5,
-  });
-
+  const { data, isLoading } = useConsensus();
+  const update = useUpdateConsensus();
+  const [cfg, setCfg] = useState<Config | null>(null);
   useEffect(() => {
     if (data?.data) setCfg(data.data);
   }, [data]);
-
-  if (isLoading) return <SectionLoader />;
-
+  if (isLoading || !cfg) return <SectionLoader />;
   return (
     <>
       <PageHeader
         title="Consensus rules"
-        description="How crowd reports are promoted from Unverified to Verified."
+        description="How spotter reports become Verified where no registrar has posted. A registrar's post always overrides the crowd."
       />
-      <SurfaceCard maxW="40rem">
+      <SectionCard maxW="44rem">
         <Stack gap="5">
           <SimpleGrid columns={{ base: 1, sm: 2 }} gap="4">
             {FIELDS.map((f) => (
@@ -64,11 +59,22 @@ export function ConsensusPage() {
                 type="number"
                 value={cfg[f.key]}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setCfg((c) => ({ ...c, [f.key]: Number(e.target.value) }))
+                  setCfg({ ...cfg, [f.key]: Number(e.target.value) })
                 }
               />
             ))}
           </SimpleGrid>
+          <Text
+            textStyle="small-regular"
+            color="gray.300"
+            bg="gray.25"
+            p="3"
+            rounded="md"
+          >
+            With these rules, {cfg.min_reports} spotters reporting the same
+            status within {cfg.window_minutes} minutes verifies it, and the
+            first {cfg.credit_first_n} earn {cfg.credit_amount} credits each.
+          </Text>
           <Button
             alignSelf="flex-end"
             loading={update.isPending}
@@ -77,7 +83,7 @@ export function ConsensusPage() {
             Save rules
           </Button>
         </Stack>
-      </SurfaceCard>
+      </SectionCard>
     </>
   );
 }

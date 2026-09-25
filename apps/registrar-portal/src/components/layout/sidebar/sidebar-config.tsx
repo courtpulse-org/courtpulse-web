@@ -1,80 +1,101 @@
 import type { ReactElement } from "react";
 import {
   ActivityIcon,
-  BriefcaseIcon,
+  BellIcon,
+  BookIcon,
+  BuildingIcon,
   CalendarIcon,
-  CameraIcon,
+  DashboardIcon,
+  GavelIcon,
   GearIcon,
   MegaphoneIcon,
-  MonitorIcon,
   ScaleIcon,
   ShieldCheckIcon,
   UsersIcon,
-  WalletIcon,
 } from "@repo/ui/icons";
 import { RouteConstants } from "@/shared/constants/routes";
+
+export type BadgeKey = "dateRequests" | "unposted";
 
 export interface SidebarItem {
   label: string;
   icon: ReactElement;
   path: string;
   activePaths?: string[];
+  /** Live count shown beside the label. */
+  badge?: BadgeKey;
+  /** Match only the exact path (for "/"). */
+  exact?: boolean;
 }
 
+// Ordered by how often a registrar reaches for them on a sitting day.
 export const registrarItems: SidebarItem[] = [
   {
-    label: "Court Console",
+    label: "Today",
     icon: <ActivityIcon />,
-    path: RouteConstants.console.base.path,
+    path: RouteConstants.today.base.path,
+    exact: true,
+    badge: "unposted",
+  },
+  {
+    label: "Courtrooms",
+    icon: <GavelIcon />,
+    path: RouteConstants.courtrooms.base.path,
+    activePaths: [RouteConstants.courtrooms.details.path],
   },
   {
     label: "Broadcasts",
     icon: <MegaphoneIcon />,
     path: RouteConstants.broadcasts.base.path,
-    activePaths: [RouteConstants.broadcasts.new.path],
   },
   {
-    label: "Virtual Dock",
-    icon: <MonitorIcon />,
-    path: RouteConstants.dock.base.path,
-    activePaths: [RouteConstants.dock.courtroom.path],
-  },
-  {
-    label: "Remote Dates",
+    label: "Date requests",
     icon: <CalendarIcon />,
-    path: RouteConstants.dock.remoteDates.path,
+    path: RouteConstants.dateRequests.base.path,
+    badge: "dateRequests",
   },
   {
-    label: "Cause List",
-    icon: <CameraIcon />,
-    path: RouteConstants.causeList.base.path,
+    label: "Judge's diary",
+    icon: <BookIcon />,
+    path: RouteConstants.diary.base.path,
+  },
+  {
+    label: "Alert log",
+    icon: <BellIcon />,
+    path: RouteConstants.alerts.base.path,
   },
 ];
 
 export const adminItems: SidebarItem[] = [
   {
+    label: "Overview",
+    icon: <DashboardIcon />,
+    path: RouteConstants.admin.base.path,
+    exact: true,
+  },
+  {
     label: "Registrars",
-    icon: <UsersIcon />,
+    icon: <ShieldCheckIcon />,
     path: RouteConstants.admin.registrars.path,
   },
   {
+    label: "Courts & judges",
+    icon: <BuildingIcon />,
+    path: RouteConstants.admin.courts.path,
+  },
+  {
+    label: "Legal calendar",
+    icon: <CalendarIcon />,
+    path: RouteConstants.admin.calendar.path,
+  },
+  {
     label: "Lawyers",
-    icon: <ShieldCheckIcon />,
+    icon: <UsersIcon />,
     path: RouteConstants.admin.lawyers.path,
   },
   {
-    label: "Disputes",
+    label: "Consensus rules",
     icon: <ScaleIcon />,
-    path: RouteConstants.admin.disputes.path,
-  },
-  {
-    label: "Escrow",
-    icon: <WalletIcon />,
-    path: RouteConstants.admin.escrow.path,
-  },
-  {
-    label: "Consensus Rules",
-    icon: <BriefcaseIcon />,
     path: RouteConstants.admin.consensus.path,
   },
 ];
@@ -84,3 +105,11 @@ export const settingsNavItem: SidebarItem = {
   icon: <GearIcon />,
   path: RouteConstants.settings.base.path,
 };
+
+/** Bottom tab bar on phones: the four things a registrar does most. */
+export const mobileTabs: SidebarItem[] = [
+  registrarItems[0]!,
+  registrarItems[1]!,
+  registrarItems[2]!,
+  registrarItems[3]!,
+];

@@ -1,10 +1,12 @@
 import { Outlet, type RouteObject } from "react-router-dom";
 import AppLayout from "@/components/layout/AppLayout";
 import { RouteError } from "@/components/error/RouteError";
-import { ConsoleRouteList } from "@/features/console/routes";
+import { TodayRouteList } from "@/features/today/routes";
+import { CourtroomRouteList } from "@/features/courtrooms/routes";
 import { BroadcastRouteList } from "@/features/broadcasts/routes";
-import { DockRouteList } from "@/features/virtual-dock/routes";
-import { CauseListRouteList } from "@/features/cause-list/routes";
+import { DateRequestRouteList } from "@/features/date-requests/routes";
+import { DiaryRouteList } from "@/features/diary/routes";
+import { AlertRouteList } from "@/features/alerts/routes";
 import { AdminRouteList } from "@/features/admin/routes";
 import { SettingsRouteList } from "@/features/settings/routes";
 import RequireAdmin from "./RequireAdmin";
@@ -20,10 +22,12 @@ export const DashboardRoutes: RouteObject = {
   element: DashboardOutlet,
   errorElement: <RouteError />,
   children: [
-    ...ConsoleRouteList,
+    ...TodayRouteList,
+    ...CourtroomRouteList,
     ...BroadcastRouteList,
-    ...DockRouteList,
-    ...CauseListRouteList,
+    ...DateRequestRouteList,
+    ...DiaryRouteList,
+    ...AlertRouteList,
     ...SettingsRouteList,
     { element: <RequireAdmin />, children: AdminRouteList },
   ],

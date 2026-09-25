@@ -1,6 +1,6 @@
 import { Button, SimpleGrid, type SimpleGridProps } from "@chakra-ui/react";
 import {
-  COURT_STATUSES,
+  SPOTTER_STATUSES,
   COURT_STATUS_LABEL,
   type CourtStatus,
 } from "@repo/types";
@@ -24,7 +24,7 @@ export function StatusTapGroup({
   onSelect,
   disabled,
   loading,
-  statuses = COURT_STATUSES,
+  statuses = SPOTTER_STATUSES,
   ...props
 }: StatusTapGroupProps) {
   return (
